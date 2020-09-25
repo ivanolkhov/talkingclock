@@ -17,7 +17,7 @@ object TalkingClock {
       case n@_ => s"${speak(n).stripSuffix("t")}ty ${speak(num % 10, false)}"
     }
     else num match {
-      case 0 => if (printZero) "zero" else ""
+      case 0 => if (printZero) "twelve" else ""
       case 1 => "one"
       case 2 => "two"
       case 3 => "three"
@@ -35,12 +35,15 @@ object TalkingClock {
       case n@_ => s"${speak(n - 10).stripSuffix("t")}teen"
     }
   }
+
   def morningNoon(hour: Int): String = {
-    if(hour >= 12) "pm" else "am"
+    if (hour >= 12) "pm" else "am"
   }
+
   def hoursConvert(hours: Int): Int = {
-    if(hours > 12) hours - 12 else hours
+    if (hours > 12) hours - 12 else hours
   }
+
   def talk(text: String): String = {
     val hour = getHours(text)
     val minutes = getMinutes(text)
@@ -50,8 +53,10 @@ object TalkingClock {
     result += "It's "
     result += speak(convhour)
     result += " "
-    if(minutes != 0) result += speak(minutes)
-    result += " "
+    if (minutes != 0) {
+      result += speak(minutes)
+      result += " "
+    }
     result += ampm
     result
   }
