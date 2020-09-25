@@ -38,5 +38,21 @@ object TalkingClock {
   def morningNoon(hour: Int): String = {
     if(hour > 12) "pm" else "am"
   }
-
+  def hoursConvert(hours: Int): Int = {
+    if(hours > 12) hours - 12 else hours
+  }
+  def talk(text: String): String = {
+    val hour = getHours(text)
+    val minutes = getMinutes(text)
+    val ampm = morningNoon(hour)
+    val convhour = hoursConvert(hour)
+    var result = ""
+    result += "It's "
+    result += speak(convhour)
+    result += " "
+    if(minutes != 0) result += speak(minutes)
+    result += " "
+    result += ampm
+    result
+  }
 }
