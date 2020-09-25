@@ -39,7 +39,7 @@ object TalkingClock {
     if(hour > 12) "pm" else "am"
   }
   def hoursConvert(hours: Int): Int = {
-    if(hours > 12) hours - 12 else hours
+    if(hours >= 12) hours - 12 else hours
   }
   def talk(text: String): String = {
     val hour = getHours(text)
